@@ -12,6 +12,5 @@ import com.example.entity.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer>{
 //  Account insertAccount(String username, String password); // INSERT may have been replaced with save, but you should have a "find by..." query
-Account  findByUsername(String username);
-
+Account  findByUsername(String username); // technically could only return a username string, but that would be more complicated
 }

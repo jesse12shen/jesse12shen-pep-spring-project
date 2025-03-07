@@ -26,17 +26,27 @@ public class SocialMediaController {
     @Autowired
     MessageService messageS;
 @PostMapping("/register")
-public ResponseEntity<Account> register(@RequestBody Account new_u){ // definitely want ResponseEntity to work with that class
+public ResponseEntity<Account> register(@RequestBody Account new_u){ // definitely want ResponseEntity to work with Account class and output status codes
     Account result = accountS.RegisterNew(new_u);
     // switch (result) { //switch statements only work on int
     //     case null:
     // }
     if(result == null){
-        return ResponseEntity.status(409).body(null);
-    }   else  if (result.getUsername().length() == 0) {
         return ResponseEntity.status(400).body(null);
+    }   else  if (result.getUsername().length() == 0) {
+        return ResponseEntity.status(409).body(null);
     }  else {
         return ResponseEntity.status(200).body(result);
     }
+}
+@PostMapping("/login")
+public ResponseEntity<Account> login(@RequestBody Account info){
+    Optional<Account> result = accountS.login(info);
+    // Boolean isNull = result.isEmpty();
+    if (result.isEmpty()){
+        return ResponseEntity.status(401).body(null);
+    }
+    return ResponseEntity.status(200)
+    .body(result.get());
 }
 }

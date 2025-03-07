@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
+import java.lang.StackWalker.Option;
 import java.util.Optional;
 
 import com.example.entity.Account;
@@ -38,4 +39,15 @@ public class AccountService {
         return this.accountR.save(account); //insertAccount should return null if username is not unique
     }
 
+    public Optional<Account> login(Account info){
+        Account credentials = this.accountR.findByUsername(info.getUsername());
+        if (credentials == null || !info.getPassword().equals(credentials.getPassword())) //we'd probably want to distinguish the errors, throw an exception? Return a dummy account with specifics?
+        {
+            // System.out.println("login was" + account.getPassword() + "but actually " + credentials.getPassword());
+            
+            // System.out.println(account.getUsername() == credentials.getUsername());
+            return Optional.ofNullable(null);
+        }
+        return Optional.of(credentials);
+    }
 }
