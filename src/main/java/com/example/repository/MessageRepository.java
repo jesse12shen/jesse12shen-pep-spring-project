@@ -1,7 +1,12 @@
 package com.example.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.entity.Message;
+
 @Repository
-public interface MessageRepository {
+public interface MessageRepository extends JpaRepository<Message, Integer>{ 
+    // interface extending to repository verifies the other components and makes it a bean
+
 }

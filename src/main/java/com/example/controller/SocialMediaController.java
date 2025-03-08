@@ -49,4 +49,15 @@ public ResponseEntity<Account> login(@RequestBody Account info){
     return ResponseEntity.status(200)
     .body(result.get());
 }
+@PostMapping("/messages")
+public ResponseEntity<Message> send(@RequestBody Message msg) {
+    Message result = messageS.send(msg);
+    if (result == null){
+        return ResponseEntity.status(400).body(null);
+    }
+    return ResponseEntity.status(200).body(result);
+}
+// public ResponseEntity<Optional<Message>> rtvAllMsg(){
+
+// }
 }

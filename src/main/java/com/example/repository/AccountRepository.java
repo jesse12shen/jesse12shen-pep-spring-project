@@ -11,6 +11,6 @@ import com.example.entity.Account;
 //  custom queries are considered JPARepo only
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer>{
-//  Account insertAccount(String username, String password); // INSERT may have been replaced with save, but you should have a "find by..." query
-Account  findByUsername(String username); // technically could only return a username string, but that would be more complicated
+//  Account insertAccount(String username, String password); // INSERT may have been replaced with save, but you should have a "find by..." query to complete INSERT's functionality
+Account  findByUsername(String username); // Could write a custom @query to return a username string only
 }
