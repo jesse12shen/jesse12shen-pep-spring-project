@@ -3,8 +3,10 @@ package com.example.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
 import com.example.entity.*;
 import com.example.repository.*;
+
 
 @Service
 public class MessageService {
@@ -24,6 +26,15 @@ public class MessageService {
             return null;
         } // message requirements
         return this.messageR.save(Message); //insertMessage should return null if username is not unique
+    }
+
+    public List<Message> rtvAll(){
+        return this.messageR.findAll();
+    }
+
+    public Message rtv(int id) {
+        // System.out.println();
+        return this.messageR.getById(id);
     }
 
 }

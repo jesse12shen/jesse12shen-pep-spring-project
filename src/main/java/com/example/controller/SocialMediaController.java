@@ -2,12 +2,16 @@ package com.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity; // wasn't included by default
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+// import java.util.Optional;
+import java.util.*;
 
+import javax.websocket.server.PathParam;
 
 import com.example.entity.*;
 import com.example.service.*;
@@ -57,7 +61,15 @@ public ResponseEntity<Message> send(@RequestBody Message msg) {
     }
     return ResponseEntity.status(200).body(result);
 }
-// public ResponseEntity<Optional<Message>> rtvAllMsg(){
 
-// }
+@GetMapping("/messages")
+public ResponseEntity<List<Message>> rtvAllMsg(){
+    return ResponseEntity.ok(messageS.rtvAll());
+}
+@GetMapping("/messages/{messageId}")
+public ResponseEntity<Message> rtvMsg(@PathVariable int messageId){
+    return ResponseEntity.ok(messageS.rtv(messageId));
+}
+
+
 }
