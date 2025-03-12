@@ -91,4 +91,8 @@ public class SocialMediaController {
         }
         return ResponseEntity.status(400).body(0);
     }
+    @GetMapping("/accounts/{accountId}/messages")
+    public ResponseEntity<List<Message>> rtvAllMsg(@PathVariable Integer accountId){
+        return ResponseEntity.ok(messageS.rtvAllByAcc(accountId));
+    }
 }

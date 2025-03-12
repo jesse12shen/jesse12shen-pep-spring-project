@@ -66,4 +66,16 @@ public class MessageService {
         messageR.save(msg_oi);
         return Optional.of(msg_oi);
     }
+    public List<Message> rtvAllByAcc(Integer a_id){
+        boolean doesUserExist = accountR.existsById(a_id);
+        List<Message> message_l = new ArrayList<Message>(); // List because that's what findByPostedBy() uses
+        if (!doesUserExist){
+            return message_l;
+        }
+        // Account account_oi = accountR.getById(a_id);
+        // System.out.println("ready to call repo");
+        message_l = messageR.findMessagesByPostedBy(a_id);
+        return message_l;
+
+    }
 }
