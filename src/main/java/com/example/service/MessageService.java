@@ -34,7 +34,36 @@ public class MessageService {
 
     public Message rtv(int id) {
         // System.out.println();
-        return this.messageR.getById(id);
+        Optional<Message> result_o = this.messageR.findById(id);
+        return result_o.orElse(null);
     }
 
+    public Integer dlt(int id){
+        Optional<Message> body = this.messageR.findById(id);
+        if (body.isPresent()){
+            this.messageR.deleteById(id);
+            // return this.messageR.deleteById_i(id);
+            return 1;
+        } else {
+            return null;
+        }
+        // return body.get(); 
+    }
+    public Optional<Message> upd(int id, String text){
+        if (!messageR.existsById(id)){
+            return Optional.empty();
+        }
+        Message msg_oi = messageR.getById(id);
+        // boolean doesMsgExist = msg_oi != null;
+        int msg_length = text.length();
+        System.out.println("text is " + text);
+        // if (msg_length > 255 || msg_length == 0 || !doesMsgExist) {
+        if (msg_length > 255 || msg_length < 1){
+            System.out.println("empty condition met" + Optional.empty());
+            return Optional.empty();
+        } // message requirements
+        msg_oi.setMessageText(text);
+        messageR.save(msg_oi);
+        return Optional.of(msg_oi);
+    }
 }
