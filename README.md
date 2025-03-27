@@ -2,7 +2,7 @@
 
 ## Background 
 
-This project was part of the Revature bootcamp curriculumn. You will find code I've written under <code>src/main/java/com/example</code> where I have written the <code>controller, repository, </code> and <code>entity</code> classes. 
+This project was part of the Revature bootcamp curriculumn. You will find code I've written under <code>src/main/java/com/example</code> where I have written the <code>controller, repository</code>, and <code>entity</code> classes. 
 
 Full-stack applications are typically concerned with both a front end, that displays information to the user and takes in input, and a backend, that manages persisted information.
 
